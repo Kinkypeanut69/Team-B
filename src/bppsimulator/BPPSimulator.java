@@ -9,6 +9,8 @@ public class BPPSimulator {
         Bin b1 = new Bin(3, 1, 4);
         System.out.println("" + p1 + "\n" + b1);
         */
+        
+        Scherm scherm = new Scherm();
     }
     
 }
