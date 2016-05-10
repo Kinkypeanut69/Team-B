@@ -22,7 +22,13 @@ public class SimpelGretig extends Algoritme {
     
     @Override
     public void runSimulation(){
-        
+        for (Packet packet : packets) {
+            for (Bin bin : bins) {
+                if(packet.getPacketLength() < bin.getLength() && packet.getPacketWidth() < bin.getWidth()){
+                    
+                }
+            }
+        }
     }
 
     @Override
