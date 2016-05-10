@@ -5,10 +5,28 @@
  */
 package bppsimulator;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Beheerder
  */
 public class SimpelGretig extends Algoritme {
+
+    private int amountOfBins;
     
+    public SimpelGretig(ArrayList<Bin> bins, ArrayList<Packet> packets){
+        this.bins = bins;
+        this.packets = packets;
+    }
+    
+    @Override
+    public void runSimulation(){
+        
+    }
+
+    @Override
+    int returnBins() {
+        return 0;
+    }
 }
