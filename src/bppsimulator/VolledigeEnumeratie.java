@@ -14,14 +14,21 @@ import java.util.ArrayList;
 public class VolledigeEnumeratie extends Algoritme {
     private int amountOfBins;
     
-    public VolledigeEnumeratie(ArrayList<Bin> bins, ArrayList<Packet> packets){
-        this.bins = bins;
+    public VolledigeEnumeratie(ArrayList<Packet> packets){
+        Bin bin1 = new Bin();
+        this.bins = bin1.getBins();
         this.packets = packets;
     }
     
     @Override
     public void runSimulation(){
-        
+        for (Bin a: bins){
+            for (Packet b: packets){
+                if (b.getLength() <= a.getLength() && b.getWidth() <= a.getWidth()){
+                    a.addItem(b);
+                }
+            }
+        }
     }
 
     @Override
