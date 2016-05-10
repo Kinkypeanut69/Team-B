@@ -5,10 +5,27 @@
  */
 package bppsimulator;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Beheerder
  */
 public class VolledigeEnumeratie extends Algoritme {
+    private int amountOfBins;
     
+    public VolledigeEnumeratie(ArrayList<Bin> bins, ArrayList<Packet> packets){
+        this.bins = bins;
+        this.packets = packets;
+    }
+    
+    @Override
+    public void runSimulation(){
+        
+    }
+
+    @Override
+    int returnBins() {
+        return 0;
+    }
 }
