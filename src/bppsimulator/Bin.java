@@ -4,29 +4,18 @@ import java.util.ArrayList;
 
 public class Bin {
     private int length;
-    private int width;
     private ArrayList<Bin> bins;
+    private ArrayList<Packet> packets;
+    private int availableroom;
     
     public Bin(){
         bins = new ArrayList<>();
         this.length = 4;
-        this.width = 4;
-    }
-    
-    public void setLength(int length){
-        this.length -= length;
+        this.availableroom = 4;
     }
     
     public int getLength(){
         return this.length;
-    }
-    
-    public void setWidth(int width){
-        this.width -= width;
-    }
-    
-    public int getWidth(){
-        return this.width;
     }
     
     public void addBin(Bin bin){
@@ -38,11 +27,19 @@ public class Bin {
     }
     
     public void addItem(Packet packet){
-        
+        packets.add(packet);
+    }
+    
+    public int getAvailabelroom(){
+        return this.availableroom;
+    }
+    
+    public void setAvailableroom(int room){
+        this.availableroom = room;
     }
     
     @Override
     public String toString() {
-        return "Lengte: " + length + " Breedte: " + width + " Hoogte: ";
+        return "Bin Lengte: " + length;
     }
 }

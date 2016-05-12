@@ -15,22 +15,28 @@ public class SimpelGretig extends Algoritme {
 
     private int amountOfBins;
     
-    public SimpelGretig(ArrayList<Bin> bins, ArrayList<Packet> packets){
-        this.bins = bins;
+    public SimpelGretig(ArrayList<Packet> packets){
+        Bin bin1 = new Bin();
+        //bins.add(bin1);
+        this.bins = bin1.getBins();
         this.packets = packets;
     }
     
     @Override
     public void runSimulation(){
-        for (Packet packet : packets) {
-            for (Bin bin : bins) {
-                if(packet.getLength() < bin.getLength() && packet.getWidth() < bin.getWidth()){
+        for (Bin bin : bins) {
+            for (Packet packet : packets) {
+                if(packet.getLength() <= bin.getAvailabelroom()){
+                    bin.addItem(packet);
+                    bin.setAvailableroom(bin.getAvailabelroom()-packet.getLength());
+                    System.out.println(bin.getAvailabelroom());
+                }else{
                     
                 }
             }
         }
     }
-
+    
     @Override
     int returnBins() {
         return 0;
