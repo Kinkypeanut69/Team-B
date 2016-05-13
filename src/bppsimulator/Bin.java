@@ -2,47 +2,49 @@ package bppsimulator;
 
 import java.util.ArrayList;
 
-public class Bin {
+public class Bin extends Order{
     private int length;
-    private int width;
-    private ArrayList<Bin> bins;
+    private int availableRoom;
+    private ArrayList<Packet> packetsInBin;
     
     public Bin(){
-        bins = new ArrayList<>();
+        super();
+        bins.add(this);
+        packetsInBin = new ArrayList<>();
         this.length = 4;
-        this.width = 4;
     }
     
-    public void setLength(int length){
-        this.length -= length;
-    }
-    
-    public int getLength(){
-        return this.length;
-    }
-    
-    public void setWidth(int width){
-        this.width -= width;
-    }
-    
-    public int getWidth(){
-        return this.width;
-    }
-    
-    public void addBin(Bin bin){
-        bins.add(bin);
+    public ArrayList<Packet> getPackets(){
+        return this.packets;
     }
     
     public ArrayList<Bin> getBins(){
         return this.bins;
     }
     
-    public void addItem(Packet packet){
+    public int getLength(){
+        return this.length;
+    }
         
+    public void addBin(Bin bin){
+        bins.add(bin);
+    }
+    
+    public boolean addItem(Packet packet){
+        
+        if ((this.length - packet.getLength()) >= 0){
+            packetsInBin.add(packet);
+            this.length -= packet.getLength();
+        }
+        return (this.length - packet.getLength() >= 0);
+    }
+    
+    public void removeItem(Packet packet){
+        packetsInBin.remove(packet);
     }
     
     @Override
     public String toString() {
-        return "Lengte: " + length + " Breedte: " + width + " Hoogte: ";
+        return "Lengte: " + length;
     }
 }
