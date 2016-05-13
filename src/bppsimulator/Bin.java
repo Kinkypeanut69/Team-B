@@ -4,21 +4,18 @@ import java.util.ArrayList;
 
 public class Bin extends Order{
     private int length;
-<<<<<<< HEAD
     private int availableRoom;
     private ArrayList<Packet> packetsInBin;
-=======
     private ArrayList<Bin> bins;
     private ArrayList<Packet> packets;
     private int availableroom;
->>>>>>> origin/master
     
     public Bin(){
         super();
         bins.add(this);
         packetsInBin = new ArrayList<>();
         this.length = 4;
-<<<<<<< HEAD
+
     }
     
     public ArrayList<Packet> getPackets(){
@@ -27,21 +24,15 @@ public class Bin extends Order{
     
     public ArrayList<Bin> getBins(){
         return this.bins;
-    }
+    } 
     
-    public int getLength(){
-        return this.length;
-    }
-        
-=======
-        this.availableroom = 4;
-    }
+     //   this.availableroom = 4;
+    //}
     
     public int getLength(){
         return this.length;
     }
     
->>>>>>> origin/master
     public void addBin(Bin bin){
         bins.add(bin);
     }
@@ -55,13 +46,9 @@ public class Bin extends Order{
         return (this.length - packet.getLength() >= 0);
     }
     
-<<<<<<< HEAD
     public void removeItem(Packet packet){
         packetsInBin.remove(packet);
-=======
-    public void addItem(Packet packet){
-        packets.add(packet);
-    }
+}
     
     public int getAvailabelroom(){
         return this.availableroom;
@@ -69,15 +56,10 @@ public class Bin extends Order{
     
     public void setAvailableroom(int room){
         this.availableroom = room;
->>>>>>> origin/master
     }
     
     @Override
     public String toString() {
-<<<<<<< HEAD
         return "Lengte: " + length;
-=======
-        return "Bin Lengte: " + length;
->>>>>>> origin/master
     }
 }
