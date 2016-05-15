@@ -9,7 +9,10 @@ public class Packet extends Order {
     
 
     public Packet(int length, int id) {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         super();
         this.length = length;
         this.artId = id;
@@ -29,7 +32,10 @@ public class Packet extends Order {
     
     @Override
     public String toString() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         return "Lengte: " + length + artId;
     }
 }
