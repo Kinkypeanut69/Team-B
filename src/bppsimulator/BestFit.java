@@ -9,6 +9,6 @@ package bppsimulator;
  *
  * @author Beheerder
  */
-public class BestFit extends Algoritme {
+public class BestFit extends AbstractBinPacking {
     
 }

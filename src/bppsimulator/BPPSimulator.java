@@ -4,23 +4,35 @@ import java.util.ArrayList;
 
 public class BPPSimulator {
 
-    
     public static void main(String[] args) {
-        
-        Packet p1 = new Packet(2, 1);
-        Packet p2 = new Packet(2, 2);
-        Packet p3 = new Packet(2, 3);
-        Packet p4 = new Packet(2, 4);
-        ArrayList<Packet> packets;
-        packets = new ArrayList<Packet>();
-        packets.add(p1);
-        packets.add(p2);
-        packets.add(p3);
-        packets.add(p4);
-        Bin bin = new Bin();
+        ArrayList<Packet> in = new ArrayList<>();
+        in.add(new Packet(10));
+        in.add(new Packet(3));
+        in.add(new Packet(2)); 
+        in.add(new Packet(3));
+        in.add(new Packet(10)); 
+        in.add(new Packet(1)); 
+        in.add(new Packet(6)); 
+        in.add(new Packet(7));
 
-        VolledigeEnumeratie VE = new VolledigeEnumeratie(packets, bin.getBins());
-        VE.VolledigeEnumeratie(0);
+        BinPackingBruteforce bf = new BinPackingBruteforce(in, 12);
+        testBinPacking(bf, "brute force");
+
+        BinPackingFirstFit ffd = new BinPackingFirstFit(in, 12);
+        testBinPacking(ffd, "first fit decreasing");
     }
-    
+
+    private static void testBinPacking(AbstractBinPacking algo, String algoName) {
+        long startTime;
+        long estimatedTime;
+
+        startTime = System.currentTimeMillis();
+        System.out.println("needed bins (" + algoName + "): " + algo.getResult());
+        algo.printBestBins();
+        estimatedTime = System.currentTimeMillis() - startTime;
+        System.out.println("in " + estimatedTime + " ms");
+
+        System.out.println("\n\n");
+    }
+
 }
