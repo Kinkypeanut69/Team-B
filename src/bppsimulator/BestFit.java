@@ -11,32 +11,28 @@ import java.util.ArrayList;
  *
  * @author Beheerder
  */
-<<<<<<< HEAD
 public class BestFit extends AbstractBinPacking {
     
-=======
-public class BestFit extends Algoritme {
-
     private int amountOfBins;
+    private ArrayList<Bin> bins = new ArrayList<>();
 
-    public BestFit(ArrayList<Packet> packets, ArrayList<Bin> bins) {
-        this.packets = packets;
-        this.bins = bins;
+    public BestFit(ArrayList<Packet> in, int binSize){
+        super(in, binSize);
+        this.bins = new ArrayList<>();
     }
 
-    @Override
     public void runSimulation() {
-        int leastRoom;
-        for (Packet packet : packets) {
-            boolean putItem = false;
+        Bin bin = new Bin(binSize);
+        for (Packet packet : in) {
             int currentBin = 0;
+            boolean putItem = false;
             while (!putItem) {
                 if (currentBin == bins.size()) {
-                    Bin newBin = new Bin(8);
-                    newBin.put(packet.getLength());
+                    Bin newBin = new Bin(binSize);
+                    newBin.put(packet);
                     bins.add(newBin);
                     putItem = true;
-                } else if (bins.get(currentBin).put(packet.getLength())) {
+                } else if (bins.get(currentBin).put(packet)) {
                     putItem = true;
                 } else {
                     currentBin++;
@@ -47,8 +43,13 @@ public class BestFit extends Algoritme {
     }
 
     @Override
-    int returnBins() {
-        return 0;
+    public int getResult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
->>>>>>> origin/master
+
+    @Override
+    public void printBestBins() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+

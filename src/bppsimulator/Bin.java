@@ -3,15 +3,12 @@ package bppsimulator;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 /**
  * A Bin holding integers.
  * <br/>
  * The number of items it can hold is not limited, but the added value of the
  * items it holds may not be higher than the given maximal size.
  */
->>>>>>> origin/master
 public class Bin {
 
     protected int maxSize; //maximum allowed added value of items
@@ -21,11 +18,8 @@ public class Bin {
     public Bin(int maxSize) {
         this.maxSize = maxSize;
         this.currentSize = 0;
-<<<<<<< HEAD
         this.items = new ArrayList<>();
-=======
-        this.items = new ArrayList<Integer>();
->>>>>>> origin/master
+        this.items = new ArrayList<>();
     }
 
     public boolean put(Packet item) {

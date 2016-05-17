@@ -11,30 +11,29 @@ import java.util.ArrayList;
  *
  * @author Beheerder
  */
-public class SimpleGready extends Algoritme {
+public class SimpleGready extends AbstractBinPacking {
 
     private int amountOfBins;
     private int maxBinSize;
+    private ArrayList<Bin> bins = new ArrayList<>();
 
-    public SimpleGready(ArrayList<Packet> packets, ArrayList<Bin> bins, int maxBinSize) {
-        this.packets = packets;
-        this.bins = bins;
-        this.maxBinSize = maxBinSize;
+    public SimpleGready(ArrayList<Packet> in, int binSize){
+        super(in, binSize);
+        this.bins = new ArrayList<>();
     }
 
-    @Override
     public void runSimulation() {
-        
-        for (Packet packet : packets) {
+        Bin bin = new Bin(maxBinSize);
+        for (Packet packet : in) {
             int currentBin = 0;
             boolean putItem = false;
             while (!putItem) {
                 if (currentBin == bins.size()) {
                     Bin newBin = new Bin(maxBinSize);
-                    newBin.put(packet.getLength());
+                    newBin.put(packet);
                     bins.add(newBin);
                     putItem = true;
-                } else if (bins.get(currentBin).put(packet.getLength())) {
+                } else if (bins.get(currentBin).put(packet)) {
                     putItem = true;
                 } else {
                     currentBin++;
@@ -45,7 +44,12 @@ public class SimpleGready extends Algoritme {
     }
 
     @Override
-    int returnBins() {
-        return 0;
+    public int getResult() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void printBestBins() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
