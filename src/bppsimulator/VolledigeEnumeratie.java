@@ -21,13 +21,13 @@ public class VolledigeEnumeratie extends Algoritme {
     
     @Override
     public void runSimulation(){
-        for (Bin a: bins){
+        /*for (Bin a: bins){
             for (Packet b: packets){
                 if (b.getLength() <= a.getLength()){
                     a.addItem(b);
                 }
             }
-        }
+        }*/
     }
     
     public void VolledigeEnumeratie(int curr) {
@@ -42,7 +42,7 @@ public class VolledigeEnumeratie extends Algoritme {
             
         }
                 
-        for (Bin a: bins){
+        /*for (Bin a: bins){
             new Bin();
             for (Packet b: packets){
                 if (a.addItem(b)){
@@ -53,7 +53,9 @@ public class VolledigeEnumeratie extends Algoritme {
                 }
             }
         }
+        */
     }
+    
 
     @Override
     int returnBins() {

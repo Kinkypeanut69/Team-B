@@ -1,65 +1,69 @@
 package bppsimulator;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Bin extends Order{
-    private int length;
-    private int availableRoom;
-    private ArrayList<Packet> packetsInBin;
-    private ArrayList<Bin> bins;
-    private ArrayList<Packet> packets;
-    private int availableroom;
-    
-    public Bin(){
-        super();
-        bins.add(this);
-        packetsInBin = new ArrayList<>();
-        this.length = 4;
+<<<<<<< HEAD
+=======
+/**
+ * A Bin holding integers.
+ * <br/>
+ * The number of items it can hold is not limited, but the added value of the
+ * items it holds may not be higher than the given maximal size.
+ */
+>>>>>>> origin/master
+public class Bin {
 
+    protected int maxSize; //maximum allowed added value of items
+    protected int currentSize; //added value of items in the bin
+    protected List<Packet> items; //items in the bin
+
+    public Bin(int maxSize) {
+        this.maxSize = maxSize;
+        this.currentSize = 0;
+<<<<<<< HEAD
+        this.items = new ArrayList<>();
+=======
+        this.items = new ArrayList<Integer>();
+>>>>>>> origin/master
     }
-    
-    public ArrayList<Packet> getPackets(){
-        return this.packets;
-    }
-    
-    public ArrayList<Bin> getBins(){
-        return this.bins;
-    } 
-    
-     //   this.availableroom = 4;
-    //}
-    
-    public int getLength(){
-        return this.length;
-    }
-    
-    public void addBin(Bin bin){
-        bins.add(bin);
-    }
-    
-    public boolean addItem(Packet packet){
-        
-        if ((this.length - packet.getLength()) >= 0){
-            packetsInBin.add(packet);
-            this.length -= packet.getLength();
+
+    public boolean put(Packet item) {
+        if (currentSize + item.getLength() <= maxSize) {
+            items.add(item);
+            currentSize += item.getLength();
+            return true;
+        } else {
+            return false; // item didn't fit
         }
-        return (this.length - packet.getLength() >= 0);
     }
-    
-    public void removeItem(Packet packet){
-        packetsInBin.remove(packet);
-}
-    
-    public int getAvailabelroom(){
-        return this.availableroom;
+
+    public void remove(Packet item) {
+        items.remove(item);
+        currentSize -= item.getLength();
     }
-    
-    public void setAvailableroom(int room){
-        this.availableroom = room;
+
+    public int numberOfItems() {
+        return items.size();
     }
-    
+
+    public Bin deepCopy() {
+        Bin copy = new Bin(0);
+        copy.items = new ArrayList<>(items); // Integers are not copied by reference
+        copy.currentSize = currentSize;
+        copy.maxSize = maxSize;
+        return copy;
+    }
+
+
+
     @Override
     public String toString() {
-        return "Lengte: " + length;
+        String res = "";
+        for (int i = 0; i < items.size(); i++) {
+            res += items.get(i).getLength() + " ";
+        }
+        res += "    Size: " + currentSize + " (max: " + maxSize + ")";
+        return res;
     }
 }

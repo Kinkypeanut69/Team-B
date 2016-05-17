@@ -1,33 +1,30 @@
 package bppsimulator;
 
-import java.util.ArrayList;
-
-public class Packet extends Order {
-
+public class Packet {
     private int length;
-    private int artId;
     
+<<<<<<< HEAD
+    public Packet(int length){
+=======
 
     public Packet(int length, int id) {
         super();
+>>>>>>> origin/master
         this.length = length;
-        this.artId = id;
-    }
-    
-    public ArrayList<Packet> getPackets(){
-        return this.packets;
-    }
-    
-    public void addPackets(){
-        this.packets.add(this);
     }
     
     public int getLength(){
+<<<<<<< HEAD
         return this.length;
+    }  
+}
+=======
+        return length;
     }
     
     @Override
     public String toString() {
-        return "Lengte: " + length + artId;
+        return "Lengte: " + length + " " + artId;
     }
 }
+>>>>>>> origin/master

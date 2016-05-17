@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Beheerder
  */
-public class SimpelGretig extends Algoritme {
+public class SimpelGretig extends AbstractBinPacking {
 
     private int amountOfBins;
     
