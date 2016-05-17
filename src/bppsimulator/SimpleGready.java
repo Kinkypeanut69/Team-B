@@ -13,23 +13,20 @@ import java.util.ArrayList;
  */
 public class SimpleGready extends AbstractBinPacking {
 
-    private int amountOfBins;
-    private int maxBinSize;
     private ArrayList<Bin> bins = new ArrayList<>();
 
-    public SimpleGready(ArrayList<Packet> in, int binSize){
+    public SimpleGready(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
-        this.bins = new ArrayList<>();
     }
 
     public void runSimulation() {
-        Bin bin = new Bin(maxBinSize);
+        bins.add(new Bin(binSize));
         for (Packet packet : in) {
             int currentBin = 0;
             boolean putItem = false;
             while (!putItem) {
                 if (currentBin == bins.size()) {
-                    Bin newBin = new Bin(maxBinSize);
+                    Bin newBin = new Bin(binSize);
                     newBin.put(packet);
                     bins.add(newBin);
                     putItem = true;
@@ -39,17 +36,19 @@ public class SimpleGready extends AbstractBinPacking {
                     currentBin++;
                 }
             }
-            System.out.println(bins.size());
         }
     }
 
     @Override
     public int getResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bins.size();
     }
 
     @Override
     public void printBestBins() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Bins:");
+        for (Bin bin : bins) {
+            System.out.println(bin.toString());
+        }
     }
 }
