@@ -5,14 +5,14 @@ import java.util.List;
 
 public class BinPackingFirstFit extends AbstractBinPacking {
 
-    private List<Bin> bins = new ArrayList<>();
+    private ArrayList<Bin> bins = new ArrayList<>();
 
     public BinPackingFirstFit(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
     }
     
     @Override
-    public List<Bin> getBins() {
+    public ArrayList<Bin> getBins() {
         return this.bins;
     }
 

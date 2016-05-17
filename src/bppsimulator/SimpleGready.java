@@ -51,4 +51,9 @@ public class SimpleGready extends AbstractBinPacking {
             System.out.println(bin.toString());
         }
     }
+
+    @Override
+    public ArrayList<Bin> getBins() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

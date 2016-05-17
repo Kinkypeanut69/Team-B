@@ -9,15 +9,16 @@ public class Screen extends JFrame implements ActionListener {
     
     private ArrayList<Packet> in;
     private JLabel jlNaam, jlBinSize;
-    private JTextField jtfNaam, jtfBinSize;
-    private JButton jbRun;
+    private JTextField jtfBinSize;
+    private JButton jbRun, jbShow;
     private JComboBox jcbAlgorithm;
     private String[] description = {"Brute Force", "First Fit"};
-    private JPanel drawPanel;
+    private AbstractBinPacking fe, ff, bf, sg;
     
     public Screen(ArrayList<Packet> in){
         this.in = new ArrayList<>();
         this.in = in;
+        this.fe = new BinPackingBruteforce(this.in, Integer.parseInt(jtfBinSize.getText()));
         setTitle("BPP Simulator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 800);
@@ -42,12 +43,8 @@ public class Screen extends JFrame implements ActionListener {
         jbRun = new JButton("Run Algorithm");
         jbRun.addActionListener(this);
         add(jbRun);
-        
-        
-        
-        
-        
-        
+                
+        DrawPanel drawpanel = new DrawPanel(fe.getBins());
         
         setVisible(true);
     }
@@ -56,14 +53,15 @@ public class Screen extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (jcbAlgorithm.getSelectedIndex() == 0){
             try {
-                BinPackingBruteforce bf = new BinPackingBruteforce(in, Integer.parseInt(jtfBinSize.getText()));
-                testBinPacking(bf, "brute force");
-                this.drawPanel = new DrawPanel(this, bf);
-                add(drawPanel);
+                
+                testBinPacking(fe, "brute force"); 
+                //new Dialog(this, fe.getBins()); 
+                
             } catch (NumberFormatException ae){
                 
             }
         }
+        repaint();
     }
     
     private static void testBinPacking(AbstractBinPacking algo, String algoName) {

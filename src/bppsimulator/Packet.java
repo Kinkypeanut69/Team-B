@@ -5,7 +5,6 @@ public class Packet {
     private int id;
     
     public Packet(int length) {
-        super();
         this.length = length;
     }
     

@@ -1,38 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bppsimulator;
 
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.*;
 
-/**
- *
- * @author Beheerder
- */
 public class DrawPanel extends JPanel {
     
-    private JFrame frame;
-    private AbstractBinPacking algo;
+
     private ArrayList<Bin> bins;
-    private ArrayList<Packet> items;
+    private int startX;
+    private int startY;
+    private int counter = 0;
     
-    public DrawPanel(JFrame frame, AbstractBinPacking algo){
-        this.algo = algo;
-        this.frame = frame;
-        this.bins = algo.getBins();
+    public DrawPanel(ArrayList<Bin> algo){
+        this.startX = 50;
+        this.startY = 100;
+        this.bins = algo;
         setPreferredSize(new Dimension(800, 200));
-        
+        setBackground(Color.WHITE);
         setVisible(true);
-       
     }
     
     @Override
     public void paintComponent (Graphics g){
-        g.drawString("Brute Force", 50, 100);
+        super.paintComponent(g);
+        
+        for (Bin a: bins){
+            System.out.println(bins.size());
+            System.out.println("next bin");
+        }
         
     }
 }
