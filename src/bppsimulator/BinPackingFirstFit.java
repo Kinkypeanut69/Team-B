@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BinPackingFirstFit extends AbstractBinPacking {
 
-    private List<Bin> bins = new ArrayList<Bin>();
+    private List<Bin> bins = new ArrayList<>();
 
     public BinPackingFirstFit(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
