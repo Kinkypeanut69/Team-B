@@ -3,7 +3,6 @@ package bppsimulator;
 import java.util.ArrayList;
 import java.util.List;
 
-<<<<<<< HEAD
 /**
  * A Bin holding integers.
  * <br/>
@@ -34,41 +33,6 @@ public class Bin {
         this.maxSize = maxSize;
         this.currentSize = 0;
         this.items = new ArrayList<Integer>();
-=======
-public class Bin extends Order{
-    private int length;
-    private int availableRoom;
-    private ArrayList<Packet> packetsInBin;
-    private ArrayList<Bin> bins;
-    private ArrayList<Packet> packets;
-    private int availableroom;
-    
-    public Bin(){
-        super();
-        bins.add(this);
-        packetsInBin = new ArrayList<>();
-        this.length = 4;
-
-    }
-    
-    public ArrayList<Packet> getPackets(){
-        return this.packets;
-    }
-    
-    public ArrayList<Bin> getBins(){
-        return this.bins;
-    } 
-    
-     //   this.availableroom = 4;
-    //}
-    
-    public int getLength(){
-        return this.length;
-    }
-    
-    public void addBin(Bin bin){
-        bins.add(bin);
->>>>>>> origin/master
     }
 
     /**
@@ -88,7 +52,6 @@ public class Bin extends Order{
             return false; // item didn't fit
         }
     }
-<<<<<<< HEAD
 
     /**
      * removes given item from bin and reduces the currentSize of the bin by
@@ -122,32 +85,17 @@ public class Bin extends Order{
         copy.currentSize = currentSize;
         copy.maxSize = maxSize;
         return copy;
-=======
-    
-    public void removeItem(Packet packet){
-        packetsInBin.remove(packet);
-}
-    
-    public int getAvailabelroom(){
-        return this.availableroom;
     }
-    
-    public void setAvailableroom(int room){
-        this.availableroom = room;
->>>>>>> origin/master
-    }
+
+
 
     @Override
     public String toString() {
-<<<<<<< HEAD
         String res = "";
         for (int i = 0; i < items.size(); i++) {
             res += items.get(i) + " ";
         }
         res += "    Size: " + currentSize + " (max: " + maxSize + ")";
         return res;
-=======
-        return "Lengte: " + length;
->>>>>>> origin/master
     }
 }
