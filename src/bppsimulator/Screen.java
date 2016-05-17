@@ -18,7 +18,7 @@ public class Screen extends JFrame implements ActionListener {
     public Screen(ArrayList<Packet> in){
         this.in = new ArrayList<>();
         this.in = in;
-        this.fe = new BinPackingBruteforce(this.in, Integer.parseInt(jtfBinSize.getText()));
+        this.fe = new BinPackingBruteforce(this.in, 12);
         setTitle("BPP Simulator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 800);
