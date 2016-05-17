@@ -13,18 +13,20 @@ import java.util.ArrayList;
  */
 public class SimpleGready extends AbstractBinPacking {
 
-    private int maxBinSize;
     private ArrayList<Bin> bins = new ArrayList<>();
 
+    public SimpleGready(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
     }
 
     public void runSimulation() {
+        bins.add(new Bin(binSize));
         for (Packet packet : in) {
             int currentBin = 0;
             boolean putItem = false;
             while (!putItem) {
                 if (currentBin == bins.size()) {
+                    Bin newBin = new Bin(binSize);
                     newBin.put(packet);
                     bins.add(newBin);
                     putItem = true;
@@ -39,9 +41,14 @@ public class SimpleGready extends AbstractBinPacking {
 
     @Override
     public int getResult() {
+        return bins.size();
     }
 
     @Override
     public void printBestBins() {
+        System.out.println("Bins:");
+        for (Bin bin : bins) {
+            System.out.println(bin.toString());
+        }
     }
 }
