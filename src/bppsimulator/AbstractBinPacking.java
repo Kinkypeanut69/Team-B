@@ -16,6 +16,8 @@ public abstract class AbstractBinPacking {
     public abstract int getResult();
 
     public abstract void printBestBins();
+    
+    public abstract List<Bin> getBins();
 
     public List<Bin> deepCopy(List<Bin> bins) {
         ArrayList<Bin> copy = new ArrayList<>();

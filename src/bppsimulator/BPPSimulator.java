@@ -14,39 +14,14 @@ public class BPPSimulator {
         in.add(new Packet(1)); 
         in.add(new Packet(6)); 
         in.add(new Packet(7));
+        Screen screen = new Screen(in);
+        //BinPackingBruteforce bf = new BinPackingBruteforce(in, 12);
+        //testBinPacking(bf, "brute force");
 
-        BinPackingBruteforce bf = new BinPackingBruteforce(in, 12);
-        testBinPacking(bf, "brute force");
-
-        BinPackingFirstFit ffd = new BinPackingFirstFit(in, 12);
-        testBinPacking(ffd, "first fit decreasing");
+        //BinPackingFirstFit ffd = new BinPackingFirstFit(in, 12);
+        //testBinPacking(ffd, "first fit");
         
-        Packet p1 = new Packet(2);
-        Packet p2 = new Packet(2);
-        Packet p3 = new Packet(2);
-        Packet p4 = new Packet(2);
-        Packet p5 = new Packet(2);
-        Packet p6 = new Packet(7);
-        Packet p7 = new Packet(8);
-        Packet p8 = new Packet(1);
-        ArrayList<Packet> packets;
-        packets = new ArrayList<Packet>();
-        packets.add(p1);
-        packets.add(p2);
-        packets.add(p3);
-        packets.add(p4);
-        //packets.add(p5);
-        packets.add(p6);
-        packets.add(p7);
-        packets.add(p8);
-        ArrayList<Bin> bins;
-        bins = new ArrayList<Bin>();
-        bins.add(new Bin(8));
-
-        //VolledigeEnumeratie VE = new VolledigeEnumeratie(packets, bin.getBins());
-        //VE.VolledigeEnumeratie(0);
-        SimpleGready SG = new SimpleGready(packets, 8);
-        SG.runSimulation();
+        
     }
 
     private static void testBinPacking(AbstractBinPacking algo, String algoName) {

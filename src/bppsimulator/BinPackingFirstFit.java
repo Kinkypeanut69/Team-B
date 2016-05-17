@@ -10,6 +10,11 @@ public class BinPackingFirstFit extends AbstractBinPacking {
     public BinPackingFirstFit(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
     }
+    
+    @Override
+    public List<Bin> getBins() {
+        return this.bins;
+    }
 
     @Override
     public int getResult() {
@@ -50,4 +55,6 @@ public class BinPackingFirstFit extends AbstractBinPacking {
             }
         }
     }
+
+
 }
