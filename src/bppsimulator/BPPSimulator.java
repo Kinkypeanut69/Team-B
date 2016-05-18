@@ -14,6 +14,14 @@ public class BPPSimulator {
         in.add(new Packet(1)); 
         in.add(new Packet(6)); 
         in.add(new Packet(7));
+        in.add(new Packet(10));
+        in.add(new Packet(3));
+        in.add(new Packet(2)); 
+        in.add(new Packet(3));
+        in.add(new Packet(10)); 
+        in.add(new Packet(1)); 
+        in.add(new Packet(6)); 
+        in.add(new Packet(7));
         Screen screen = new Screen(in);
     }
 
