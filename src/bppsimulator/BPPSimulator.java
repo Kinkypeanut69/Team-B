@@ -15,6 +15,20 @@ public class BPPSimulator {
         in.add(new Packet(6)); 
         in.add(new Packet(7));
         Screen screen = new Screen(in);
+
+        BinPackingBruteforce bf = new BinPackingBruteforce(in, 12);
+        testBinPacking(bf, "brute force");
+
+        BinPackingFirstFit ffd = new BinPackingFirstFit(in, 12);
+        testBinPacking(ffd, "first fit decreasing");
+
+        SimpleGready SG = new SimpleGready(in, 12);
+        SG.runSimulation();
+        testBinPacking(SG, "Simple Gready");
+        
+        BestFit bef = new BestFit(in, 12);
+        bef.runSimulation();
+        testBinPacking(bef, "Best Fit");
     }
 
     private static void testBinPacking(AbstractBinPacking algo, String algoName) {

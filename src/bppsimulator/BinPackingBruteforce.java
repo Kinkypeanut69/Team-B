@@ -8,7 +8,7 @@ public class BinPackingBruteforce extends AbstractBinPacking {
     private int currentBestSolution;
     private ArrayList<Bin> currentBestBins;
     
-    @Override
+   
     public ArrayList<Bin> getBins() {
         return this.currentBestBins;
     }

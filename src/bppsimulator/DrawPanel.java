@@ -34,6 +34,9 @@ public class DrawPanel extends JPanel {
     @Override
     public void paintComponent (Graphics g){
         super.paintComponent(g);
+        this.startX = 50;
+        this.startY = 50;
+        this.startYItem = 50;
         for (AbstractBinPacking a: parent.getAlgorithms()){
             for (Bin b: a.getBins()){
                 g.setColor(Color.BLACK);

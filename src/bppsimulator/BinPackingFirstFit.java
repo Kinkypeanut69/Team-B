@@ -11,7 +11,7 @@ public class BinPackingFirstFit extends AbstractBinPacking {
         super(in, binSize);
     }
     
-    @Override
+ 
     public ArrayList<Bin> getBins() {
         return this.bins;
     }

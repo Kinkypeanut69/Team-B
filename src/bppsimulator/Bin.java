@@ -30,6 +30,14 @@ public class Bin {
             return false; // item didn't fit
         }
     }
+    
+    public boolean putCheck(Packet item){
+        if (currentSize + item.getLength() <= maxSize) {
+            return true;
+        } else {
+            return false; // item didn't fit
+        }
+    }
 
     public void remove(Packet item) {
         items.remove(item);
@@ -51,7 +59,10 @@ public class Bin {
         copy.maxSize = maxSize;
         return copy;
     }
-
+    
+    public int roomLeft(){
+        return maxSize - currentSize;
+    }
 
 
     @Override
