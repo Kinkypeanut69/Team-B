@@ -13,12 +13,11 @@ public class Bin {
 
     protected int maxSize; //maximum allowed added value of items
     protected int currentSize; //added value of items in the bin
-    protected List<Packet> items; //items in the bin
+    protected ArrayList<Packet> items; //items in the bin
 
     public Bin(int maxSize) {
         this.maxSize = maxSize;
         this.currentSize = 0;
-        this.items = new ArrayList<>();
         this.items = new ArrayList<>();
     }
 
@@ -47,6 +46,10 @@ public class Bin {
 
     public int numberOfItems() {
         return items.size();
+    }
+    
+    public ArrayList<Packet> getItems(){
+        return this.items;
     }
 
     public Bin deepCopy() {

@@ -1,13 +1,19 @@
 package bppsimulator;
 
+import java.awt.AWTEventMulticaster;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BinPackingBruteforce extends AbstractBinPacking {
 
-    private List<Bin> bins = new ArrayList<Bin>();
+    private ArrayList<Bin> bins = new ArrayList<Bin>();
     private int currentBestSolution;
-    private List<Bin> currentBestBins;
+    private ArrayList<Bin> currentBestBins;
+    
+   
+    public ArrayList<Bin> getBins() {
+        return this.currentBestBins;
+    }
 
     public BinPackingBruteforce(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
@@ -67,4 +73,6 @@ public class BinPackingBruteforce extends AbstractBinPacking {
             }
         }
     }
+
+
 }
