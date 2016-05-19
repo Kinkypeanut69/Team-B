@@ -45,15 +45,16 @@ public class BinPackingFirstFit extends AbstractBinPacking {
     }
 
     @Override
-    public void printBestBins() {
-        System.out.println("Bins:");
+    public String printBestBins() {
+        String a = ("Bins:");
         if (bins.size() == in.size()) {
-            System.out.println("each item is in its own bin");
+            a += ("each item is in its own bin");
         } else {
             for (Bin bin : bins) {
-                System.out.println(bin.toString());
+                a += ("\n" + bin.toString());
             }
         }
+        return a;
     }
 
 

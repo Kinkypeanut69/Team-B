@@ -11,6 +11,7 @@ public class Screen extends JFrame implements ActionListener {
     private ArrayList<AbstractBinPacking> algorithms;
     private JLabel jlNaam, jlBinSize;
     private JTextField jtfBinSize;
+    private JTextArea jtAinfo;
     private JButton jbRun;
     private JComboBox jcbAlgorithm;
     private String[] description = {"Brute Force", "First Fit"};
@@ -46,6 +47,9 @@ public class Screen extends JFrame implements ActionListener {
                 
         DrawPanel drawpanel = new DrawPanel(this);
         add(drawpanel);
+        
+        jtAinfo = new JTextArea();
+        add(jtAinfo);
         
         setVisible(true);
     }
@@ -83,16 +87,15 @@ public class Screen extends JFrame implements ActionListener {
         return this.algorithms;
     }
     
-    private static void testBinPacking(AbstractBinPacking algo, String algoName) {
+    private void testBinPacking(AbstractBinPacking algo, String algoName) {
         long startTime;
         long estimatedTime;
 
         startTime = System.currentTimeMillis();
-        System.out.println("needed bins (" + algoName + "): " + algo.getResult());
-        algo.printBestBins();
+        this.jtAinfo.append("needed bins (" + algoName + "): " + algo.getResult());
+        this.jtAinfo.append(algo.printBestBins());
         estimatedTime = System.currentTimeMillis() - startTime;
-        System.out.println("in " + estimatedTime + " ms");
-
-        System.out.println("\n\n");
+        this.jtAinfo.append("\n" + "in " + estimatedTime + " ms");
+        this.jtAinfo.append("\n\n");
     }
 }

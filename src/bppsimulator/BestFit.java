@@ -49,8 +49,12 @@ public class BestFit extends AbstractBinPacking {
     }
 
     @Override
-    public void printBestBins() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String printBestBins() {
+        String a = ("Bins:");
+        for (Bin bin : bins) {
+            a += ("\n" + bin.toString());
+        }
+        return a;
     }
 
     @Override

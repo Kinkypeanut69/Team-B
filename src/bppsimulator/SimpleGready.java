@@ -45,11 +45,12 @@ public class SimpleGready extends AbstractBinPacking {
     }
 
     @Override
-    public void printBestBins() {
-        System.out.println("Bins:");
+    public String printBestBins() {
+        String a = ("Bins:");
         for (Bin bin : bins) {
-            System.out.println(bin.toString());
+            a += ("\n" + bin.toString());
         }
+        return a;
     }
 
     @Override

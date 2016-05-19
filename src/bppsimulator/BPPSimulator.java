@@ -14,14 +14,6 @@ public class BPPSimulator {
         in.add(new Packet(1)); 
         in.add(new Packet(6)); 
         in.add(new Packet(7));
-        in.add(new Packet(10));
-        in.add(new Packet(3));
-        in.add(new Packet(2)); 
-        in.add(new Packet(3));
-        in.add(new Packet(10)); 
-        in.add(new Packet(1)); 
-        in.add(new Packet(6)); 
-        in.add(new Packet(7));
         Screen screen = new Screen(in);
     }
 
@@ -33,7 +25,7 @@ public class BPPSimulator {
         System.out.println("needed bins (" + algoName + "): " + algo.getResult());
         algo.printBestBins();
         estimatedTime = System.currentTimeMillis() - startTime;
-        System.out.println("in " + estimatedTime + " ms");
+        System.out.println("\n" + "in " + estimatedTime + " ms");
 
         System.out.println("\n\n");
     }

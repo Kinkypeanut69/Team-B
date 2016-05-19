@@ -15,7 +15,7 @@ public abstract class AbstractBinPacking {
 
     public abstract int getResult();
 
-    public abstract void printBestBins();
+    public abstract String printBestBins();
     
     public abstract ArrayList<Bin> getBins();
 
@@ -24,6 +24,12 @@ public abstract class AbstractBinPacking {
         for (int i = 0; i < bins.size(); i++) {
             if (bins.get(i).numberOfItems() != 0){
                 copy.add(bins.get(i).deepCopy());
+            }
+        }
+        
+        for (Bin bin: copy){
+            if (bin.numberOfItems() == 0){
+                copy.remove(bin);
             }
         }
         return copy;

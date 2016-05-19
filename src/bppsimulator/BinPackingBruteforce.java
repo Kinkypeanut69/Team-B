@@ -1,8 +1,6 @@
 package bppsimulator;
 
-import java.awt.AWTEventMulticaster;
 import java.util.ArrayList;
-import java.util.List;
 
 public class BinPackingBruteforce extends AbstractBinPacking {
 
@@ -61,18 +59,17 @@ public class BinPackingBruteforce extends AbstractBinPacking {
     }
 
     @Override
-    public void printBestBins() {
-        System.out.println("Bins:");
+    public String printBestBins() {
+        String a = ("Bins:");
         if (currentBestSolution == in.size()) {
-            System.out.println("each item is in its own bin");
+            a += ("each item is in its own bin");
         } else {
             for (Bin currentBin : currentBestBins) {
                 if (currentBin.numberOfItems() != 0) { // don't print empty bins
-                    System.out.println(currentBin.toString());
+                    a += ("\n" + currentBin.toString());
                 }
             }
         }
+        return a;
     }
-
-
 }
