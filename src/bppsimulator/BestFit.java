@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BestFit extends AbstractBinPacking {
 
-    private ArrayList<Bin> bins;
+    private ArrayList<Bin> bins; //ArrayList to store bins in
 
     public BestFit(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
@@ -13,44 +13,55 @@ public class BestFit extends AbstractBinPacking {
             bins.add(new Bin(binSize)); // create maximum of needed bins
         }
     }
+    
+    //returns ArrayList of bins
+    @Override
+    public ArrayList<Bin> getBins() {
+        return this.bins;
+    }
 
-    public void runSimulation() {
-        int leastRoom;
-        Packet bestPacket = null;
-        Bin bestBin = null;
+    //runs the simulation and returns the amount of bins needed
+    @Override
+    public int getResult() {
+        bestFit(); //executes the actual simulation
+        return bins.size();
+    }
+    
+    //runs the simulation
+    private void bestFit(){
+        int leastRoom; //stores number of least room left
+        Bin bestBin = null; //stores the best bin
 
+        //iterate over all packets 
         for (Packet packet : in) {
-            leastRoom = 99;
+            leastRoom = 99; //an unusually high value to make sure a packet gets below it
+            //iterate over all bins
             for (Bin bin1: bins) {
+                //Checks if the item fits
                 if (bin1.putCheck(packet)) {
+                    //calculates amount of room left after packets gets put in
                     int roomLeft = bin1.roomLeft() - packet.getLength();
+                    //is roomleft better than previous?
                     if (roomLeft < leastRoom) {
+                        //store new roomleft
                         leastRoom = roomLeft;
-                        bestPacket = packet;
+                        //store the bin
                         bestBin = bin1;
                     }
                 }
             }
-            bestBin.put(bestPacket);
+            //put the packet in the best bin
+            bestBin.put(packet);
         }
-        bins = deepCopy(bins);
+        bins = deepCopy(bins); //copies the bin list and removes empty bins 
     }
 
     @Override
-    public int getResult() {
-        return bins.size();
-    }
-
-    @Override
-    public String printBestBins() {
+    public String toString() {
         String a = ("Bins:");
         for (Bin bin : bins) {
             a += ("\n" + bin.toString());
         }
         return a;
-    }
-
-    public ArrayList<Bin> getBins() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

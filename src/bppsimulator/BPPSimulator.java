@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class BPPSimulator {
 
     public static void main(String[] args) {
+        //Creates an ArrayList of Packet objects to use for the simulations
         ArrayList<Packet> in = new ArrayList<>();
         in.add(new Packet(10));
         in.add(new Packet(3));
@@ -14,34 +15,8 @@ public class BPPSimulator {
         in.add(new Packet(1)); 
         in.add(new Packet(6)); 
         in.add(new Packet(7));
-        Screen screen = new Screen(in);
-
-        BinPackingBruteforce bf = new BinPackingBruteforce(in, 12);
-        testBinPacking(bf, "brute force");
-
-        BinPackingFirstFit ffd = new BinPackingFirstFit(in, 12);
-        testBinPacking(ffd, "first fit decreasing");
-
-        SimpleGready SG = new SimpleGready(in, 12);
-        SG.runSimulation();
-        testBinPacking(SG, "Simple Gready");
         
-        BestFit bef = new BestFit(in, 12);
-        bef.runSimulation();
-        testBinPacking(bef, "Best Fit");
+        //Makes the screen to run simulations in
+        Screen screen = new Screen(in);
     }
-
-    private static void testBinPacking(AbstractBinPacking algo, String algoName) {
-        long startTime;
-        long estimatedTime;
-
-        startTime = System.currentTimeMillis();
-        System.out.println("needed bins (" + algoName + "): " + algo.getResult());
-        algo.printBestBins();
-        estimatedTime = System.currentTimeMillis() - startTime;
-        System.out.println("\n" + "in " + estimatedTime + " ms");
-
-        System.out.println("\n\n");
-    }
-
 }

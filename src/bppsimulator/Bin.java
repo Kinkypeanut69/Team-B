@@ -1,14 +1,7 @@
 package bppsimulator;
 
 import java.util.ArrayList;
-import java.util.List;
 
-/**
- * A Bin holding integers.
- * <br/>
- * The number of items it can hold is not limited, but the added value of the
- * items it holds may not be higher than the given maximal size.
- */
 public class Bin {
 
     protected int maxSize; //maximum allowed added value of items
@@ -21,7 +14,9 @@ public class Bin {
         this.items = new ArrayList<>();
     }
 
+    //method that puts a packet in a bin
     public boolean put(Packet item) {
+        //check if there's enough room
         if (currentSize + item.getLength() <= maxSize) {
             items.add(item);
             currentSize += item.getLength();
@@ -31,6 +26,7 @@ public class Bin {
         }
     }
     
+    //checks if there's room left
     public boolean putCheck(Packet item){
         if (currentSize + item.getLength() <= maxSize) {
             return true;
@@ -39,27 +35,31 @@ public class Bin {
         }
     }
 
+    //remove item from bin
     public void remove(Packet item) {
         items.remove(item);
         currentSize -= item.getLength();
     }
 
+    //amount of items in bin
     public int numberOfItems() {
         return items.size();
     }
     
+    //return ArrayList with items that the bin contains
     public ArrayList<Packet> getItems(){
         return this.items;
     }
 
     public Bin deepCopy() {
         Bin copy = new Bin(0);
-        copy.items = new ArrayList<>(items); // Integers are not copied by reference
-        copy.currentSize = currentSize;
-        copy.maxSize = maxSize;
-        return copy;
+        copy.items = new ArrayList<>(items); //copies all the items in the bin
+        copy.currentSize = currentSize; //copies the currentsize attribute
+        copy.maxSize = maxSize; //copies the maxsize attribute
+        return copy; //returns the newly created bin to the deepCopy method in AbstractBinPacking
     }
     
+    //calculates room left in bin
     public int roomLeft(){
         return maxSize - currentSize;
     }

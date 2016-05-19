@@ -2,27 +2,24 @@ package bppsimulator;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Random;
 import javax.swing.*;
 
 public class DrawPanel extends JPanel {
     
 
     private Screen parent;
-    private int startX;
-    private int startY;
-    private int startYItem;
+    private int startX, startY, startYItem, index = 0;
     private ArrayList<Color> colors;
-    private int index = 0;
     
     public DrawPanel(Screen parent){
-        this.parent = parent;
-        this.colors = new ArrayList<>();
+        this.parent = parent; //stores the screen parent in an attribute
+        this.colors = new ArrayList<>(); //add a variety of colors to switch between
         colors.add(Color.red);
         colors.add(Color.BLUE);
         colors.add(Color.PINK);
         colors.add(Color.GREEN);
-        this.startX = 50;
+        //x and y coordinates for drawing the panel
+        this.startX = 50; 
         this.startY = 50;
         this.startYItem = 50;
         
@@ -34,9 +31,11 @@ public class DrawPanel extends JPanel {
     @Override
     public void paintComponent (Graphics g){
         super.paintComponent(g);
-        this.startX = 50;
-        this.startY = 50;
-        this.startYItem = 50;
+        startX = 50; 
+        startY = 50;
+        startYItem = 50;
+        
+        //draws bins and packets on the drawingpanel
         for (AbstractBinPacking a: parent.getAlgorithms()){
             for (Bin b: a.getBins()){
                 g.setColor(Color.BLACK);
@@ -53,7 +52,6 @@ public class DrawPanel extends JPanel {
                 }
                 startX += 100;
             }
-        }
-        
+        }  
     }
 }
