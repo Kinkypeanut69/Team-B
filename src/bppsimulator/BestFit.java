@@ -6,6 +6,7 @@
 package bppsimulator;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -56,5 +57,9 @@ public class BestFit extends AbstractBinPacking {
         for (Bin bin : bins) {
             System.out.println(bin.toString());
         }
+    }
+
+    public ArrayList<Bin> getBins() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
