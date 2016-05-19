@@ -12,44 +12,49 @@ import java.util.ArrayList;
  * @author Beheerder
  */
 public class BestFit extends AbstractBinPacking {
-    
-    private int amountOfBins;
-    private ArrayList<Bin> bins = new ArrayList<>();
 
-    public BestFit(ArrayList<Packet> in, int binSize){
+    private ArrayList<Bin> bins;
+
+    public BestFit(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
-        this.bins = new ArrayList<>();
+        bins = new ArrayList<>();
+        for (Packet in1 : in) {
+            bins.add(new Bin(binSize)); // create maximum of needed bins
+        }
     }
 
     public void runSimulation() {
-        Bin bin = new Bin(binSize);
+        int leastRoom = 99;
+        Packet bestPacket = null;
+        Bin bestBin = null;
+
         for (Packet packet : in) {
-            int currentBin = 0;
-            boolean putItem = false;
-            while (!putItem) {
-                if (currentBin == bins.size()) {
-                    Bin newBin = new Bin(binSize);
-                    newBin.put(packet);
-                    bins.add(newBin);
-                    putItem = true;
-                } else if (bins.get(currentBin).put(packet)) {
-                    putItem = true;
-                } else {
-                    currentBin++;
+            leastRoom = 99;
+            for (Bin bin1: bins) {
+                if (bin1.putCheck(packet)) {
+                    int roomLeft = bin1.roomLeft() - packet.getLength();
+                    if (roomLeft < leastRoom) {
+                        leastRoom = roomLeft;
+                        bestPacket = packet;
+                        bestBin = bin1;
+                    }
                 }
             }
-            System.out.println(bins.size());
+            bestBin.put(bestPacket);
         }
+        bins = deepCopy(bins);
     }
 
     @Override
     public int getResult() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return bins.size();
     }
 
     @Override
     public void printBestBins() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Bins:");
+        for (Bin bin : bins) {
+            System.out.println(bin.toString());
+        }
     }
 }
-

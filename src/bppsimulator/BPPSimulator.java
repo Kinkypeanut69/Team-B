@@ -24,6 +24,10 @@ public class BPPSimulator {
         SimpleGready SG = new SimpleGready(in, 12);
         SG.runSimulation();
         testBinPacking(SG, "Simple Gready");
+        
+        BestFit bef = new BestFit(in, 12);
+        bef.runSimulation();
+        testBinPacking(bef, "Best Fit");
     }
 
     private static void testBinPacking(AbstractBinPacking algo, String algoName) {

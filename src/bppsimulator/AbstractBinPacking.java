@@ -17,10 +17,18 @@ public abstract class AbstractBinPacking {
 
     public abstract void printBestBins();
 
-    public List<Bin> deepCopy(List<Bin> bins) {
+    public ArrayList<Bin> deepCopy(List<Bin> bins) {
         ArrayList<Bin> copy = new ArrayList<>();
         for (int i = 0; i < bins.size(); i++) {
-            copy.add(bins.get(i).deepCopy());
+            if(bins.get(i).numberOfItems() != 0){
+                copy.add(bins.get(i).deepCopy());
+            } 
+        }
+        
+        for (Bin bin: copy){
+            if (bin.numberOfItems() == 0){
+                copy.remove(bin);
+            }
         }
         return copy;
     }
