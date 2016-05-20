@@ -1,51 +1,52 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bppsimulator;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Beheerder
- */
-public class SimpleGready extends Algoritme {
+public class SimpleGready extends AbstractBinPacking {
 
-    private int amountOfBins;
-    private int maxBinSize;
+    private ArrayList<Bin> bins = new ArrayList<>();
 
-    public SimpleGready(ArrayList<Packet> packets, ArrayList<Bin> bins, int maxBinSize) {
-        this.packets = packets;
-        this.bins = bins;
-        this.maxBinSize = maxBinSize;
+    public SimpleGready(ArrayList<Packet> in, int binSize) {
+        super(in, binSize);
     }
 
-    @Override
     public void runSimulation() {
-        
-        for (Packet packet : packets) {
+        bins.add(new Bin(binSize));
+        for (Packet packet : in) {
             int currentBin = 0;
             boolean putItem = false;
             while (!putItem) {
                 if (currentBin == bins.size()) {
-                    Bin newBin = new Bin(maxBinSize);
-                    newBin.put(packet.getLength());
+                    Bin newBin = new Bin(binSize);
+                    newBin.put(packet);
                     bins.add(newBin);
                     putItem = true;
-                } else if (bins.get(currentBin).put(packet.getLength())) {
+                } else if (bins.get(currentBin).put(packet)) {
                     putItem = true;
                 } else {
                     currentBin++;
                 }
             }
-            System.out.println(bins.size());
         }
+        bins = deepCopy(bins);
     }
 
     @Override
-    int returnBins() {
-        return 0;
+    public int getResult() {
+        return bins.size();
+    }
+
+    @Override
+    public String printBestBins() {
+        String a = ("Bins:");
+        for (Bin bin : bins) {
+            a += ("\n" + bin.toString());
+        }
+        return a;
+    }
+
+    @Override
+    public ArrayList<Bin> getBins() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

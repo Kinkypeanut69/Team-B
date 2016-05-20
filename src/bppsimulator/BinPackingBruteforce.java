@@ -1,13 +1,17 @@
 package bppsimulator;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class BinPackingBruteforce extends AbstractBinPacking {
 
-    private List<Bin> bins = new ArrayList<Bin>();
+    private ArrayList<Bin> bins = new ArrayList<Bin>();
     private int currentBestSolution;
-    private List<Bin> currentBestBins;
+    private ArrayList<Bin> currentBestBins;
+    
+   
+    public ArrayList<Bin> getBins() {
+        return this.currentBestBins;
+    }
 
     public BinPackingBruteforce(ArrayList<Packet> in, int binSize) {
         super(in, binSize);
@@ -55,16 +59,17 @@ public class BinPackingBruteforce extends AbstractBinPacking {
     }
 
     @Override
-    public void printBestBins() {
-        System.out.println("Bins:");
+    public String printBestBins() {
+        String a = ("Bins:");
         if (currentBestSolution == in.size()) {
-            System.out.println("each item is in its own bin");
+            a += ("each item is in its own bin");
         } else {
             for (Bin currentBin : currentBestBins) {
                 if (currentBin.numberOfItems() != 0) { // don't print empty bins
-                    System.out.println(currentBin.toString());
+                    a += ("\n" + currentBin.toString());
                 }
             }
         }
+        return a;
     }
 }

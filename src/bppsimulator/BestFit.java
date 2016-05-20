@@ -1,54 +1,56 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package bppsimulator;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Beheerder
- */
-<<<<<<< HEAD
 public class BestFit extends AbstractBinPacking {
-    
-=======
-public class BestFit extends Algoritme {
 
-    private int amountOfBins;
+    private ArrayList<Bin> bins;
 
-    public BestFit(ArrayList<Packet> packets, ArrayList<Bin> bins) {
-        this.packets = packets;
-        this.bins = bins;
-    }
-
-    @Override
-    public void runSimulation() {
-        int leastRoom;
-        for (Packet packet : packets) {
-            boolean putItem = false;
-            int currentBin = 0;
-            while (!putItem) {
-                if (currentBin == bins.size()) {
-                    Bin newBin = new Bin(8);
-                    newBin.put(packet.getLength());
-                    bins.add(newBin);
-                    putItem = true;
-                } else if (bins.get(currentBin).put(packet.getLength())) {
-                    putItem = true;
-                } else {
-                    currentBin++;
-                }
-            }
-            System.out.println(bins.size());
+    public BestFit(ArrayList<Packet> in, int binSize) {
+        super(in, binSize);
+        bins = new ArrayList<>();
+        for (Packet in1 : in) {
+            bins.add(new Bin(binSize)); // create maximum of needed bins
         }
     }
 
-    @Override
-    int returnBins() {
-        return 0;
+    public void runSimulation() {
+        int leastRoom;
+        Packet bestPacket = null;
+        Bin bestBin = null;
+
+        for (Packet packet : in) {
+            leastRoom = 99;
+            for (Bin bin1: bins) {
+                if (bin1.putCheck(packet)) {
+                    int roomLeft = bin1.roomLeft() - packet.getLength();
+                    if (roomLeft < leastRoom) {
+                        leastRoom = roomLeft;
+                        bestPacket = packet;
+                        bestBin = bin1;
+                    }
+                }
+            }
+            bestBin.put(bestPacket);
+        }
+        bins = deepCopy(bins);
     }
->>>>>>> origin/master
+
+    @Override
+    public int getResult() {
+        return bins.size();
+    }
+
+    @Override
+    public String printBestBins() {
+        String a = ("Bins:");
+        for (Bin bin : bins) {
+            a += ("\n" + bin.toString());
+        }
+        return a;
+    }
+
+    public ArrayList<Bin> getBins() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
